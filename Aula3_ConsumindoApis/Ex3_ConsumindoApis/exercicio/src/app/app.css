@@ -1,0 +1,6 @@
+.topo { background: #1b5e20; color: #fff; padding: 12px 24px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; font-family: Arial, sans-serif; }
+.topo h1 { margin: 0; font-size: 20px; }
+nav { display: flex; gap: 8px; flex-wrap: wrap; }
+nav a { color: #c8e6c9; text-decoration: none; padding: 4px 10px; border-radius: 4px; }
+nav a.ativo { background: #78c043; color: #000; font-weight: bold; }
+.pagina { max-width: 1000px; margin: 0 auto; padding: 24px; font-family: Arial, sans-serif; }

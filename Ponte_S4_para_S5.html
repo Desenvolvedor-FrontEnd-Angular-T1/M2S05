@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ponte S4 para S5</title>
+<style>
+  :root{
+    --navy:#1b4f72; --navy-dark:#123049; --zebra:#eef4f8;
+    --note-bg:#eaf2f8; --warn-bg:#fff3cd; --code-bg:#1e1e1e;
+    --verde:#2e7d32; --verde-dark:#1b5e20;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;font-family:Arial,Helvetica,sans-serif;color:#263238;line-height:1.55;font-size:13.5px}
+  .wrap{max-width:980px;margin:auto;padding:28px 34px}
+  h1{color:var(--navy);text-align:center;font-size:27px;margin-bottom:4px}
+  h1 + .subtitle{text-align:center;color:#37474f;font-size:15.5px;font-weight:bold;margin-top:0;margin-bottom:18px}
+  .meta{font-size:12.5px;color:#455a64;border-bottom:1px solid #cfd8dc;padding-bottom:16px;margin-bottom:16px}
+  .meta b{color:#263238}
+  h2.encontro,h2.section,h2.conexao,h2.aula{background:var(--navy);color:#fff;padding:10px 16px;border-radius:4px;font-size:17px;margin-top:34px;margin-bottom:14px;letter-spacing:.2px}
+  h3.bloco{color:var(--navy-dark);border-bottom:2px solid var(--navy);padding-bottom:4px;font-size:15px;margin-top:26px}
+  h3.dia{background:var(--navy-dark);color:#fff;padding:8px 14px;border-radius:4px;font-size:14.5px;margin-top:22px;margin-bottom:10px}
+  h3.questao{color:var(--navy-dark);font-size:14px;margin-top:22px;margin-bottom:2px}
+  .tempo{color:#607d8b;font-weight:normal;font-size:12.5px}
+  .enunciado{font-weight:bold;margin:4px 0 8px}
+  .obj-encontro,.objetivo-encontro{background:var(--zebra);border-left:4px solid var(--navy);padding:10px 14px;margin:14px 0 20px;font-size:13px}
+  .fala{background:var(--zebra);border-radius:5px;padding:10px 14px;margin:10px 0}
+  .fala b.label{color:var(--navy);display:block;margin-bottom:3px}
+  pre{background:var(--code-bg);color:#f8f8f2;padding:12px 14px;border-radius:6px;overflow:auto;font-size:11.8px;line-height:1.5;margin:10px 0;white-space:pre-wrap}
+  code{font-family:Consolas,Menlo,monospace}
+  :not(pre) > code{background:#eef4f8;color:var(--navy);padding:1px 5px;border-radius:3px;font-size:12px}
+  .pergunta{background:#f1f8f4;border-left:4px solid #2a9d8f;padding:9px 14px;margin:10px 0;font-size:13px}
+  .pergunta b{color:#1d7a6e}
+  .nota,.dica,.fio{background:var(--note-bg);border-left:4px solid var(--navy);border-radius:4px;padding:10px 14px;margin:12px 0;font-size:12.8px}
+  .nota .titulo,.dica .titulo,.fio .titulo{font-weight:bold;color:var(--navy);display:block;margin-bottom:3px}
+  .atencao,.apoio,.observacao{background:var(--warn-bg);border-left:4px solid #e08e00;border-radius:4px;padding:10px 14px;margin:12px 0;font-size:12.8px}
+  .atencao .titulo,.observacao .titulo{font-weight:bold;color:#8a5c00;display:block;margin-bottom:3px}
+  .apoio b{color:#8a5c00}
+  .realizado,.fechamento{background:#eef7f2;border-left:4px solid #2a9d8f;border-radius:4px;padding:10px 14px;margin:12px 0;font-size:12.8px}
+  .realizado .titulo{font-weight:bold;color:#1d7a6e;display:block;margin-bottom:3px}
+  .fechamento{margin:20px 0 8px;font-size:13px}
+  .fechamento b{color:#1d7a6e}
+  .erro-comum{background:#fdecea;border-left:4px solid #d9534f;border-radius:4px;padding:10px 14px;margin:10px 0 22px;font-size:12.8px}
+  .erro-comum .titulo,.erro-comum b:first-child{font-weight:bold;color:#a83a32}
+  .erro-comum .titulo{display:block;margin-bottom:3px}
+  .checklist-final{background:var(--navy);color:#fff;padding:11px 16px;border-radius:4px;font-size:16px;margin-top:36px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 20px;font-size:12.6px}
+  th{background:var(--navy);color:#fff;text-align:left;padding:7px 10px}
+  td{padding:7px 10px;border-bottom:1px solid #e3e9ec;vertical-align:top}
+  tr:nth-child(even) td{background:var(--zebra)}
+  td.correta{font-weight:bold;color:#1d7a6e}
+  .slides{white-space:nowrap;color:var(--navy);font-weight:bold}
+  .comentario{font-size:12.5px;color:#455a64;margin:0 0 18px}
+  .comentario b{color:#263238}
+  .conferencia{background:var(--zebra);border-left:4px solid var(--navy);border-radius:4px;padding:12px 16px;margin-top:16px;font-size:12.8px}
+  .conferencia li{margin-bottom:6px}
+  .comparacao{display:flex;gap:16px;margin:12px 0;flex-wrap:wrap}
+  .comparacao .lado{flex:1;min-width:280px}
+  .rotulo-antes,.rotulo-depois{display:inline-block;color:#fff;font-size:11px;font-weight:bold;padding:3px 10px;border-radius:3px 3px 0 0}
+  .rotulo-antes{background:#d9534f}.rotulo-depois{background:#2a9d8f}
+  .caixa-antes{border:2px solid #d9534f;border-top:none;border-radius:0 0 6px 6px}
+  .caixa-depois{border:2px solid #2a9d8f;border-top:none;border-radius:0 0 6px 6px}
+  .caixa-antes pre,.caixa-depois pre{margin:0;border-radius:0}
+  .checklist li{list-style:none;margin-bottom:7px;padding-left:24px;position:relative;font-size:13px}
+  .checklist li::before{content:"✓";position:absolute;left:0;color:#2a9d8f;font-weight:bold}
+  .video-item{border:1px solid #e3e9ec;border-radius:6px;padding:10px 14px;margin-bottom:10px}
+  .video-item .titulo-video{font-weight:bold;color:var(--navy-dark);display:block;margin-bottom:2px}
+  .video-item .canal{color:#607d8b;font-size:12px}
+  .video-item .desc{margin:4px 0 0;font-size:12.6px}
+  .paleta{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 18px}
+  .cor{width:140px;border:1px solid #cfd8dc;border-radius:8px;overflow:hidden;font-size:11.5px}
+  .cor .amostra{height:46px}
+  .cor .info{padding:6px 8px}
+  a{color:var(--navy)}
+  ul{margin-top:6px}
+  li{margin-bottom:5px}
+  hr{border:none;border-top:1px solid #cfd8dc;margin:26px 0}
+  .pagebreak{break-before:page}
+  footer{margin-top:40px;padding-top:14px;border-top:1px solid #e3e9ec;color:#78909c;font-size:11px;text-align:center}
+  @media print{ .wrap{padding:0} a{color:var(--navy) !important;text-decoration:underline} }
+
+  .pausa{background:#eef7f2;border-left:4px solid #2a9d8f;border-radius:4px;padding:10px 14px;margin:12px 0;font-size:12.8px}
+  .pausa .titulo{font-weight:bold;color:#1d7a6e;display:block;margin-bottom:3px}
+  .tela{background:#fff;border:1px dashed #90a4ae;border-radius:4px;padding:8px 14px;margin:10px 0;font-size:12.8px}
+  .tela .titulo{font-weight:bold;color:#455a64;display:block;margin-bottom:3px}
+  .minuto{display:inline-block;background:var(--navy);color:#fff;font-size:11.5px;font-weight:bold;padding:2px 9px;border-radius:3px;margin-right:6px}
+  table.compacta td,table.compacta th{padding:5px 8px;font-size:12px}
+
+  .fluxo-caixa{border:2px solid #1b4f72;border-radius:8px;padding:10px 12px;background:#fff;font-size:12px}
+  .fluxo-caixa h4{margin:0 0 4px;color:#1b4f72;font-size:13px}
+  .linha{display:flex;gap:10px;align-items:stretch;margin:10px 0;flex-wrap:wrap}
+  .linha > .fluxo-caixa{flex:1;min-width:150px}
+  .seta{align-self:center;color:#2a9d8f;font-weight:bold;font-size:20px}
+  .verde{border-color:#2a9d8f}.verde h4{color:#1d7a6e}
+  .laranja{border-color:#e08e00;background:#fff8e6}.laranja h4{color:#8a5c00}
+  .azul{border-color:#4fa3e0;background:#eaf4fc}.azul h4{color:#1b5e8f}
+  .roxo{border-color:#7e57c2;background:#f3eefb}.roxo h4{color:#5e35b1}
+  .cabeca-secao{background:#1b4f72;color:#fff;padding:9px 14px;border-radius:6px;font-size:16px;margin:26px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Da Semana 4 à Semana 5</h1>
+  <p class="subtitle">Conectando services, signals e RxJS a formulários, rotas, pipes, diretivas e APIs</p>
+  <p class="meta">Desenvolvimento Front-End [Angular] T1 | Módulo 2 | Semana 5 | Este material não traz conteúdo novo: mostra, ponto a ponto, como o que você já praticou (**Módulo 1** e **Semanas 3 e 4**) é a <b>base literal</b> do que vamos fazer na <b>Semana 5</b>. A ideia é simples: <b>nada aqui é assunto desconhecido, é o mesmo conhecimento crescendo.</b></p>
+
+<h3 class="bloco" style="border:none;margin-top:0">Como ler este material</h3><p>Cada seção segue o mesmo formato: primeiro, <b>o que você já sabe</b> (com o código como apareceu antes); depois, <b>o que a Semana 5 acrescenta</b>; por fim, uma comparação lado a lado entre a versão "de antes" e a "de agora" do mesmo problema.</p><div class="fio"><span class="titulo">O fio condutor: o projeto que cresceu</span>Na Semana 3 você criou a <b>biblioteca-web</b>; na Semana 4 ela ganhou <b>service, signals, Observables, HTTP e Git em equipe</b>. Agora ela ganha <b>entrada de dados</b> (formulários), <b>várias páginas</b> (rotas), <b>formatação e reuso</b> (pipes e diretivas) e <b>dados de fora</b> (APIs). <b>Nada aqui é assunto desconhecido: é o mesmo conhecimento crescendo.</b></div><table><tr><th>Semana</th><th>O que você construiu</th><th>Ferramenta usada</th></tr><tr><td>Módulo 1</td><td>JavaScript no navegador e no Node: DOM, <code>fetch</code>, <code>async/await</code>, <code>localStorage</code>, regex</td><td><code>document.querySelector</code>, <code>fetch</code>, <code>JSON.parse</code>, <code>replace(/\D/g, '')</code></td></tr><tr><td>03 e 04</td><td>Componentes, <code>@for/@if</code>, bindings, <code>@Input/@Output</code>; service, DI, signals, Observables, <code>HttpClient</code>, GitFlow</td><td><code>inject()</code>, <code>signal</code>, <code>input()</code>, <code>subscribe</code>, <code>retry</code>, <code>finalize</code></td></tr><tr><td>05</td><td>A mesma biblioteca-web com formulários, rotas, pipes, diretivas e APIs</td><td><b>Assunto desta semana:</b> <code>FormGroup</code>, <code>provideRouter</code>, <code>@Pipe</code>, <code>@Directive</code>, <code>HttpClient</code></td></tr></table><h2 class="conexao">CONEXÃO 1 - Do estado em signals e da mensagem na tela aos formulários</h2><h3 class="bloco">O que você já sabe (Semanas 3 e 4 e Módulo 1)</h3><p>Na Semana 4 você guardou o estado de tela em <b>signals</b> (<code>carregando</code>, <code>erro</code>) e viu que, em aplicações zoneless, a tela só atualiza quando um signal muda. No Módulo 1, o formulário era lido com <code>document.querySelector(...).value</code>.</p><h3 class="bloco">O que a Semana 5 acrescenta</h3><ul><li><code>ngModel</code> e <code>FormControl</code> guardam o <b>valor e o estado</b> (válido, tocado, alterado) de cada campo.</li><li>As mensagens de sucesso e de erro continuam em <b>signals</b>.</li><li>O dado válido segue para o <b>service</b> (<code>adicionar()</code>), como na Semana 4.</li></ul><h3 class="bloco">Comparando o código: o mesmo problema, antes e depois</h3><div class="comparacao"><div class="lado"><span class="rotulo-antes">MÓDULO 1 - ler o campo na mão</span><div class="caixa-antes"><pre><code>const nome = document.querySelector('#nome').value;
+if (nome.length &lt; 3) {
+  erro.textContent = 'Mínimo 3 letras';
+}</code></pre></div></div><div class="lado"><span class="rotulo-depois">SEMANA 5 - Reactive Forms</span><div class="caixa-depois"><pre><code>form = this.fb.group({
+  nome: ['', [Validators.required, Validators.minLength(3)]],
+});
+// template: [formGroup]="form" formControlName="nome"</code></pre></div></div></div><div class="observacao"><span class="titulo">O que realmente mudou?</span>O objetivo é o mesmo (validar o que o usuário digitou). Muda <b>quem acompanha o estado</b>: o Angular, em vez de código manual no DOM.</div><h2 class="conexao pagebreak">CONEXÃO 2 - Do service, da DI e do inject() ao Router, FormBuilder e HttpClient</h2><h3 class="bloco">O que você já sabe (Semanas 3 e 4 e Módulo 1)</h3><p>Na Semana 4 você aprendeu que <b>não se cria</b> o que se precisa: <b>pede-se</b> ao Angular com <code>inject()</code> (nada de <code>new</code>) e recebe-se a <b>mesma instância</b>.</p><h3 class="bloco">O que a Semana 5 acrescenta</h3><ul><li><code>inject(NonNullableFormBuilder)</code>, <code>inject(Router)</code> e <code>inject(HttpClient)</code> seguem <b>exatamente</b> a mesma ideia.</li><li>O <code>HttpClient</code> fica <b>dentro de um service</b> (<code>CepService</code>, <code>CatalogoService</code>), e o componente só usa o service.</li><li><code>provideRouter</code> e <code>provideHttpClient</code> são os <b>providers</b> que ensinam o Angular a entregar essas dependências.</li></ul><h3 class="bloco">Comparando o código: o mesmo problema, antes e depois</h3><div class="comparacao"><div class="lado"><span class="rotulo-antes">SEMANA 4 - um service seu</span><div class="caixa-antes"><pre><code>private livroService = inject(LivroService);
+this.livroService.emprestar(id);</code></pre></div></div><div class="lado"><span class="rotulo-depois">SEMANA 5 - serviços do Angular</span><div class="caixa-depois"><pre><code>private router = inject(Router);
+private http = inject(HttpClient);
+this.router.navigate(['/livros', id]);</code></pre></div></div></div><div class="observacao"><span class="titulo">O que realmente mudou?</span>A mecânica não muda. A diferença é que agora a dependência <b>já vem pronta do Angular</b>, e você só precisa registrar o provider certo (<code>provideRouter</code>, <code>provideHttpClient</code>).</div><h2 class="conexao pagebreak">CONEXÃO 3 - Do input()/output() e do model() aos parâmetros de rota e às diretivas</h2><h3 class="bloco">O que você já sabe (Semanas 3 e 4 e Módulo 1)</h3><p>Na Semana 4 você declarou entradas com <code>input()</code> e <code>input.required()</code> e viu o pai enviar <code>[livro]="x"</code> ao filho.</p><h3 class="bloco">O que a Semana 5 acrescenta</h3><ul><li>Com <code>withComponentInputBinding()</code>, o <b>parâmetro da URL</b> (<code>:id</code>) chega ao componente como um <b><code>input()</code></b>.</li><li>Diretivas também recebem dados com <code>input()</code> (<code>[appDestaque]="'#c8e6c9'"</code>).</li><li>Todo parâmetro de rota chega como <b>texto</b>: converta com <code>Number()</code>.</li></ul><h3 class="bloco">Comparando o código: o mesmo problema, antes e depois</h3><div class="comparacao"><div class="lado"><span class="rotulo-antes">SEMANA 4 - pai envia ao filho</span><div class="caixa-antes"><pre><code>livro = input.required&lt;Livro&gt;();
+// pai: &lt;app-card-livro [livro]="livro" /&gt;</code></pre></div></div><div class="lado"><span class="rotulo-depois">SEMANA 5 - a URL envia ao componente</span><div class="caixa-depois"><pre><code>id = input.required&lt;string&gt;();
+livro = computed(() =&gt; lista().find(l =&gt; l.id === Number(this.id())));
+// URL: /livros/3</code></pre></div></div></div><div class="observacao"><span class="titulo">O que realmente mudou?</span>O componente <b>continua recebendo dados por <code>input()</code></b>. Muda quem envia: o roteador, a partir da URL.</div><h2 class="conexao pagebreak">CONEXÃO 4 - Dos Observables e do HttpClient aos valueChanges, ao CEP e aos interceptors</h2><h3 class="bloco">O que você já sabe (Semanas 3 e 4 e Módulo 1)</h3><p>Na Semana 4 você viu que um Observable é <b>preguiçoso</b>, só executa com <code>subscribe</code>, e que <code>retry</code>, <code>catchError</code> e <code>finalize</code> tratam falhas. Também aprendeu a <b>cancelar</b> inscrições (<code>takeUntilDestroyed</code>).</p><h3 class="bloco">O que a Semana 5 acrescenta</h3><ul><li><code>valueChanges</code> do campo CEP é um <b>Observable</b> (<code>filter</code> + <code>takeUntilDestroyed</code>) que dispara a consulta.</li><li><code>http.get&lt;T&gt;()</code> devolve um Observable; os <b>3 estados</b> da tela usam <code>finalize</code>.</li><li>Um <b>interceptor</b> é uma função que passa por toda requisição (log, cabeçalhos, token).</li></ul><h3 class="bloco">Comparando o código: o mesmo problema, antes e depois</h3><div class="comparacao"><div class="lado"><span class="rotulo-antes">MÓDULO 1 - fetch e await</span><div class="caixa-antes"><pre><code>const r = await fetch('https://viacep.com.br/ws/88010400/json/');
+const endereco = await r.json();</code></pre></div></div><div class="lado"><span class="rotulo-depois">SEMANA 5 - HttpClient + RxJS</span><div class="caixa-depois"><pre><code>this.cepService.buscar(cep)
+  .pipe(finalize(() =&gt; this.carregando.set(false)))
+  .subscribe({ next: (e) =&gt; this.form.patchValue(e) });</code></pre></div></div></div><div class="observacao"><span class="titulo">O que realmente mudou?</span>É a mesma conversa com a API, agora com <b>Observable</b>, tipagem, tratamento de erro padronizado e um ponto central para interceptar tudo.</div><h2 class="conexao pagebreak">CONEXÃO 5 - Do Módulo 1 (regex, DOM e localStorage) às diretivas, pipes e guards</h2><h3 class="bloco">O que você já sabe (Semanas 3 e 4 e Módulo 1)</h3><p>No Módulo 1 você usou <b>expressões regulares</b> para limpar texto, escutou eventos do DOM com <code>addEventListener</code> e formatou datas e valores com funções manuais.</p><h3 class="bloco">O que a Semana 5 acrescenta</h3><ul><li><b>Diretivas</b> escutam eventos do elemento e mudam o estilo, como um <code>addEventListener</code> reutilizável (<code>appDestaque</code>, <code>appSomenteNumeros</code> com <code>replace(/\D/g, '')</code>).</li><li><b>Pipes</b> formatam valores só na tela (<code>currency</code>, <code>date</code>), no lugar de funções de formatação espalhadas.</li><li>Um <b>guard</b> substitui o <code>window.confirm</code> solto na saída da página.</li></ul><h3 class="bloco">Comparando o código: o mesmo problema, antes e depois</h3><div class="comparacao"><div class="lado"><span class="rotulo-antes">MÓDULO 1 - formatar na mão</span><div class="caixa-antes"><pre><code>const preco = 'R$ ' + valor.toFixed(2).replace('.', ',');
+input.addEventListener('input', () =&gt; {
+  input.value = input.value.replace(/\D/g, '');
+});</code></pre></div></div><div class="lado"><span class="rotulo-depois">SEMANA 5 - pipe e diretiva</span><div class="caixa-depois"><pre><code>{{ valor | currency: 'BRL' }}
+&lt;input appSomenteNumeros /&gt;</code></pre></div></div></div><div class="observacao"><span class="titulo">O que realmente mudou?</span>As ideias já eram suas (regex, eventos, formatação). Agora elas viram <b>peças reutilizáveis</b> do framework.</div><h2 class="conexao pagebreak">CONEXÃO 6 - Do GitFlow à entrega do projeto da semana</h2><h3 class="bloco">O que você já sabe (Semanas 3 e 4 e Módulo 1)</h3><p>Na Semana 4 você praticou <b>branches <code>feature/*</code></b>, Pull Request e Conventional Commits.</p><h3 class="bloco">O que a Semana 5 acrescenta</h3><ul><li>Cada parte da semana pode ser uma <code>feature</code> (<code>feature/formularios</code>, <code>feature/rotas</code>, <code>feature/apis</code>).</li><li>Mensagens como <code>feat(forms): cadastro de livro com validação</code> e <code>feat(http): busca de CEP</code>.</li><li>Mantenha o repositório atualizado: é a base das próximas semanas.</li></ul><h3 class="bloco">Comparando o código: o mesmo problema, antes e depois</h3><div class="comparacao"><div class="lado"><span class="rotulo-antes">SEMANA 4</span><div class="caixa-antes"><pre><code>git switch -c feature/busca develop
+git commit -m "feat(busca): filtro por titulo"</code></pre></div></div><div class="lado"><span class="rotulo-depois">SEMANA 5</span><div class="caixa-depois"><pre><code>git switch -c feature/formularios develop
+git commit -m "feat(forms): cadastro de livro"</code></pre></div></div></div><div class="observacao"><span class="titulo">O que realmente mudou?</span>O fluxo é o mesmo. O que muda é o <b>conteúdo</b> que você versiona.</div>
+
+  <footer>
+    Desenvolvimento Front-End [Angular] T1 - SENAI/SC - Ponte Semana 4 para Semana 5<br>
+    Professor Lisandro Faria Pinheiro
+  </footer>
+
+</div>
+</body>
+</html>

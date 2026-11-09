@@ -1,0 +1,12 @@
+h2 { color: #2e7d32; margin-top: 0; }
+h2 small { font-size: 12px; color: #546e7a; font-weight: normal; }
+.busca { display: flex; gap: 8px; margin-bottom: 12px; }
+.busca input { flex: 1; padding: 8px; border: 1px solid #b0bec5; border-radius: 4px; }
+button { padding: 8px 12px; border: 0; border-radius: 4px; background: #78c043; font-weight: bold; cursor: pointer; }
+.erro { color: #c62828; }
+.info { color: #1565c0; }
+.resultados { list-style: none; padding: 0; display: grid; gap: 8px; }
+.resultados li { display: flex; align-items: center; gap: 12px; border: 1px solid #cfd8dc; border-radius: 8px; padding: 8px; background: #fff; }
+.resultados img { width: 48px; height: 64px; object-fit: cover; border-radius: 4px; }
+.info-livro { display: flex; flex-direction: column; flex: 1; font-size: 14px; }
+.info-livro span { color: #546e7a; font-size: 12px; }

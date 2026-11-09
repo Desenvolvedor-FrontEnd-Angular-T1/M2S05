@@ -1,0 +1,15 @@
+<!-- TODO 9: Aplique a diretiva no cartão: acrescente o atributo appDestaque na tag <article>. -->
+<article class="card" [class.indisponivel]="!livro().disponivel">
+  <img [src]="livro().imagem" [alt]="'Capa do livro ' + livro().titulo" />
+  <!-- TODO 3: Transforme o título em link para o detalhe: <a [routerLink]="['/livros', livro().id]">. -->
+  <h3>{{ livro().titulo }}</h3>
+  <p>{{ livro().autor }} · {{ livro().categoria }}</p>
+  <!-- TODO 8: Mostre {{ livro().paginas | tempoLeitura }} ao lado do número de páginas. -->
+  <!-- TODO 7: Mostre o preço formatado: {{ livro().preco | currency: 'BRL' }}. -->
+  <span class="selo">{{ livro().disponivel ? 'Disponível' : 'Emprestado' }}</span>
+  @if (livro().disponivel) {
+    <button (click)="emprestar.emit(livro().id)">Emprestar</button>
+  } @else {
+    <button (click)="devolver.emit(livro().id)">Devolver</button>
+  }
+</article>

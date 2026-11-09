@@ -1,0 +1,11 @@
+.bloco-form { border: 1px solid #cfd8dc; border-radius: 8px; padding: 16px; background: #fff; max-width: 480px; }
+.bloco-form h2 { margin: 0 0 12px; font-size: 18px; color: #2e7d32; }
+.bloco-form h2 small { font-size: 12px; color: #546e7a; font-weight: normal; }
+form { display: flex; flex-direction: column; gap: 6px; }
+label { font-size: 13px; font-weight: bold; margin-top: 6px; }
+input { padding: 8px; border: 1px solid #b0bec5; border-radius: 4px; font-size: 14px; }
+input.ng-invalid.ng-touched { border-color: #c62828; background: #fff5f5; }
+.erro { color: #c62828; font-size: 12px; }
+.info { color: #1565c0; font-size: 12px; }
+.ok { color: #2e7d32; font-weight: bold; }
+button { margin-top: 10px; padding: 8px 12px; border: 0; border-radius: 4px; background: #78c043; font-weight: bold; cursor: pointer; }

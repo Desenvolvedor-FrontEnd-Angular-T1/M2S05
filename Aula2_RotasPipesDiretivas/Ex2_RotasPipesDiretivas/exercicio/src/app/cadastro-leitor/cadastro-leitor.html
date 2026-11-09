@@ -1,0 +1,39 @@
+<section class="bloco-form">
+  <h2>Cadastro de leitor <small>Template-Driven</small></h2>
+
+  <!-- #f="ngForm": guarda o formulário inteiro numa variável | (ngSubmit): dispara ao enviar | novalidate: desliga a validação nativa do navegador -->
+  <form #f="ngForm" (ngSubmit)="salvar(f)" novalidate>
+    <label for="nome">Nome completo</label>
+    <!-- name é OBRIGATÓRIO com ngModel | required e minlength são validadores em atributo | #nome="ngModel" expõe o estado do campo -->
+    <input id="nome" name="nome" [(ngModel)]="leitor.nome" #nome="ngModel" required minlength="3" />
+    @if (nome.invalid && (nome.touched || f.submitted)) {
+      <small class="erro">
+        @if (nome.hasError('required')) { Informe o nome. } @else { Use pelo menos 3 letras. }
+      </small>
+    }
+
+    <label for="email">E-mail</label>
+    <input id="email" name="email" type="email" [(ngModel)]="leitor.email" #email="ngModel" required email />
+    @if (email.invalid && (email.touched || f.submitted)) {
+      <small class="erro">
+        @if (email.hasError('required')) { Informe o e-mail. } @else { Esse e-mail não parece válido. }
+      </small>
+    }
+
+    <label class="check">
+      <input type="checkbox" name="termos" [(ngModel)]="leitor.aceitaTermos" #termos="ngModel" required />
+      Li e aceito o regulamento da biblioteca
+    </label>
+    @if (termos.invalid && (termos.touched || f.submitted)) {
+      <small class="erro">É preciso aceitar o regulamento.</small>
+    }
+
+    <button type="submit">Cadastrar leitor</button>
+  </form>
+
+  <!-- Estado do formulário ao vivo (ótimo para mostrar em aula) -->
+  <p class="estado">{{ f.valid ? 'Válido' : 'Inválido' }} · tocado: {{ f.touched }} · alterado: {{ f.dirty }}</p>
+  @if (mensagem()) {
+    <p class="ok">{{ mensagem() }}</p>
+  }
+</section>

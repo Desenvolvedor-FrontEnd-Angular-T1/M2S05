@@ -1,0 +1,25 @@
+@if (livro(); as l) {
+  <a routerLink="/livros" class="voltar">← Voltar para a lista</a>
+  <article class="detalhe">
+    <img [src]="l.imagem" [alt]="'Capa de ' + l.titulo" />
+    <div>
+      <h2>{{ l.titulo }}</h2>
+      <p>{{ l.autor }} · {{ l.categoria }}</p>
+      <p>{{ l.paginas }} páginas · {{ l.disponivel ? 'Disponível' : 'Emprestado' }}</p>
+    </div>
+  </article>
+} @else {
+  <p>Livro não encontrado. <a routerLink="/livros">Voltar para a lista</a></p>
+}
+
+@if (livro(); as l) {
+  <dl class="ficha">
+    <dt>Título (uppercase)</dt><dd>{{ l.titulo | uppercase }}</dd>
+    <dt>Preço (currency)</dt><dd>{{ l.preco | currency: 'BRL' }}</dd>
+    <dt>Consulta em (date)</dt><dd>{{ hoje | date: 'fullDate' }}</dd>
+  </dl>
+}
+
+@if (livro(); as l) {
+  <p class="leitura">Tempo estimado de leitura: <strong>{{ l.paginas | tempoLeitura }}</strong></p>
+}

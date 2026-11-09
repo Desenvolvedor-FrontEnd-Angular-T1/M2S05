@@ -1,0 +1,13 @@
+<article class="card" appDestaque [class.indisponivel]="!livro().disponivel">
+  <img [src]="livro().imagem" [alt]="'Capa do livro ' + livro().titulo" />
+  <h3><a [routerLink]="['/livros', livro().id]">{{ livro().titulo }}</a></h3>
+  <p>{{ livro().autor }} · {{ livro().categoria }}</p>
+  <p class="leitura">{{ livro().paginas }} págs · {{ livro().paginas | tempoLeitura }}</p>
+  <p class="preco">{{ livro().preco | currency: 'BRL' }}</p>
+  <span class="selo">{{ livro().disponivel ? 'Disponível' : 'Emprestado' }}</span>
+  @if (livro().disponivel) {
+    <button (click)="emprestar.emit(livro().id)">Emprestar</button>
+  } @else {
+    <button (click)="devolver.emit(livro().id)">Devolver</button>
+  }
+</article>

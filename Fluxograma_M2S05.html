@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fluxograma M2S05</title>
+<style>
+  :root{
+    --navy:#1b4f72; --navy-dark:#123049; --zebra:#eef4f8;
+    --note-bg:#eaf2f8; --warn-bg:#fff3cd; --code-bg:#1e1e1e;
+    --verde:#2e7d32; --verde-dark:#1b5e20;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;font-family:Arial,Helvetica,sans-serif;color:#263238;line-height:1.55;font-size:13.5px}
+  .wrap{max-width:980px;margin:auto;padding:28px 34px}
+  h1{color:var(--navy);text-align:center;font-size:27px;margin-bottom:4px}
+  h1 + .subtitle{text-align:center;color:#37474f;font-size:15.5px;font-weight:bold;margin-top:0;margin-bottom:18px}
+  .meta{font-size:12.5px;color:#455a64;border-bottom:1px solid #cfd8dc;padding-bottom:16px;margin-bottom:16px}
+  .meta b{color:#263238}
+  h2.encontro,h2.section,h2.conexao,h2.aula{background:var(--navy);color:#fff;padding:10px 16px;border-radius:4px;font-size:17px;margin-top:34px;margin-bottom:14px;letter-spacing:.2px}
+  h3.bloco{color:var(--navy-dark);border-bottom:2px solid var(--navy);padding-bottom:4px;font-size:15px;margin-top:26px}
+  h3.dia{background:var(--navy-dark);color:#fff;padding:8px 14px;border-radius:4px;font-size:14.5px;margin-top:22px;margin-bottom:10px}
+  h3.questao{color:var(--navy-dark);font-size:14px;margin-top:22px;margin-bottom:2px}
+  .tempo{color:#607d8b;font-weight:normal;font-size:12.5px}
+  .enunciado{font-weight:bold;margin:4px 0 8px}
+  .obj-encontro,.objetivo-encontro{background:var(--zebra);border-left:4px solid var(--navy);padding:10px 14px;margin:14px 0 20px;font-size:13px}
+  .fala{background:var(--zebra);border-radius:5px;padding:10px 14px;margin:10px 0}
+  .fala b.label{color:var(--navy);display:block;margin-bottom:3px}
+  pre{background:var(--code-bg);color:#f8f8f2;padding:12px 14px;border-radius:6px;overflow:auto;font-size:11.8px;line-height:1.5;margin:10px 0;white-space:pre-wrap}
+  code{font-family:Consolas,Menlo,monospace}
+  :not(pre) > code{background:#eef4f8;color:var(--navy);padding:1px 5px;border-radius:3px;font-size:12px}
+  .pergunta{background:#f1f8f4;border-left:4px solid #2a9d8f;padding:9px 14px;margin:10px 0;font-size:13px}
+  .pergunta b{color:#1d7a6e}
+  .nota,.dica,.fio{background:var(--note-bg);border-left:4px solid var(--navy);border-radius:4px;padding:10px 14px;margin:12px 0;font-size:12.8px}
+  .nota .titulo,.dica .titulo,.fio .titulo{font-weight:bold;color:var(--navy);display:block;margin-bottom:3px}
+  .atencao,.apoio,.observacao{background:var(--warn-bg);border-left:4px solid #e08e00;border-radius:4px;padding:10px 14px;margin:12px 0;font-size:12.8px}
+  .atencao .titulo,.observacao .titulo{font-weight:bold;color:#8a5c00;display:block;margin-bottom:3px}
+  .apoio b{color:#8a5c00}
+  .realizado,.fechamento{background:#eef7f2;border-left:4px solid #2a9d8f;border-radius:4px;padding:10px 14px;margin:12px 0;font-size:12.8px}
+  .realizado .titulo{font-weight:bold;color:#1d7a6e;display:block;margin-bottom:3px}
+  .fechamento{margin:20px 0 8px;font-size:13px}
+  .fechamento b{color:#1d7a6e}
+  .erro-comum{background:#fdecea;border-left:4px solid #d9534f;border-radius:4px;padding:10px 14px;margin:10px 0 22px;font-size:12.8px}
+  .erro-comum .titulo,.erro-comum b:first-child{font-weight:bold;color:#a83a32}
+  .erro-comum .titulo{display:block;margin-bottom:3px}
+  .checklist-final{background:var(--navy);color:#fff;padding:11px 16px;border-radius:4px;font-size:16px;margin-top:36px}
+  table{width:100%;border-collapse:collapse;margin:10px 0 20px;font-size:12.6px}
+  th{background:var(--navy);color:#fff;text-align:left;padding:7px 10px}
+  td{padding:7px 10px;border-bottom:1px solid #e3e9ec;vertical-align:top}
+  tr:nth-child(even) td{background:var(--zebra)}
+  td.correta{font-weight:bold;color:#1d7a6e}
+  .slides{white-space:nowrap;color:var(--navy);font-weight:bold}
+  .comentario{font-size:12.5px;color:#455a64;margin:0 0 18px}
+  .comentario b{color:#263238}
+  .conferencia{background:var(--zebra);border-left:4px solid var(--navy);border-radius:4px;padding:12px 16px;margin-top:16px;font-size:12.8px}
+  .conferencia li{margin-bottom:6px}
+  .comparacao{display:flex;gap:16px;margin:12px 0;flex-wrap:wrap}
+  .comparacao .lado{flex:1;min-width:280px}
+  .rotulo-antes,.rotulo-depois{display:inline-block;color:#fff;font-size:11px;font-weight:bold;padding:3px 10px;border-radius:3px 3px 0 0}
+  .rotulo-antes{background:#d9534f}.rotulo-depois{background:#2a9d8f}
+  .caixa-antes{border:2px solid #d9534f;border-top:none;border-radius:0 0 6px 6px}
+  .caixa-depois{border:2px solid #2a9d8f;border-top:none;border-radius:0 0 6px 6px}
+  .caixa-antes pre,.caixa-depois pre{margin:0;border-radius:0}
+  .checklist li{list-style:none;margin-bottom:7px;padding-left:24px;position:relative;font-size:13px}
+  .checklist li::before{content:"✓";position:absolute;left:0;color:#2a9d8f;font-weight:bold}
+  .video-item{border:1px solid #e3e9ec;border-radius:6px;padding:10px 14px;margin-bottom:10px}
+  .video-item .titulo-video{font-weight:bold;color:var(--navy-dark);display:block;margin-bottom:2px}
+  .video-item .canal{color:#607d8b;font-size:12px}
+  .video-item .desc{margin:4px 0 0;font-size:12.6px}
+  .paleta{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 18px}
+  .cor{width:140px;border:1px solid #cfd8dc;border-radius:8px;overflow:hidden;font-size:11.5px}
+  .cor .amostra{height:46px}
+  .cor .info{padding:6px 8px}
+  a{color:var(--navy)}
+  ul{margin-top:6px}
+  li{margin-bottom:5px}
+  hr{border:none;border-top:1px solid #cfd8dc;margin:26px 0}
+  .pagebreak{break-before:page}
+  footer{margin-top:40px;padding-top:14px;border-top:1px solid #e3e9ec;color:#78909c;font-size:11px;text-align:center}
+  @media print{ .wrap{padding:0} a{color:var(--navy) !important;text-decoration:underline} }
+
+  .pausa{background:#eef7f2;border-left:4px solid #2a9d8f;border-radius:4px;padding:10px 14px;margin:12px 0;font-size:12.8px}
+  .pausa .titulo{font-weight:bold;color:#1d7a6e;display:block;margin-bottom:3px}
+  .tela{background:#fff;border:1px dashed #90a4ae;border-radius:4px;padding:8px 14px;margin:10px 0;font-size:12.8px}
+  .tela .titulo{font-weight:bold;color:#455a64;display:block;margin-bottom:3px}
+  .minuto{display:inline-block;background:var(--navy);color:#fff;font-size:11.5px;font-weight:bold;padding:2px 9px;border-radius:3px;margin-right:6px}
+  table.compacta td,table.compacta th{padding:5px 8px;font-size:12px}
+
+  .fluxo-caixa{border:2px solid #1b4f72;border-radius:8px;padding:10px 12px;background:#fff;font-size:12px}
+  .fluxo-caixa h4{margin:0 0 4px;color:#1b4f72;font-size:13px}
+  .linha{display:flex;gap:10px;align-items:stretch;margin:10px 0;flex-wrap:wrap}
+  .linha > .fluxo-caixa{flex:1;min-width:150px}
+  .seta{align-self:center;color:#2a9d8f;font-weight:bold;font-size:20px}
+  .verde{border-color:#2a9d8f}.verde h4{color:#1d7a6e}
+  .laranja{border-color:#e08e00;background:#fff8e6}.laranja h4{color:#8a5c00}
+  .azul{border-color:#4fa3e0;background:#eaf4fc}.azul h4{color:#1b5e8f}
+  .roxo{border-color:#7e57c2;background:#f3eefb}.roxo h4{color:#5e35b1}
+  .cabeca-secao{background:#1b4f72;color:#fff;padding:9px 14px;border-radius:6px;font-size:16px;margin:26px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Como tudo se conecta - Semana 5</h1>
+  <p class="subtitle">Formulários, rotas, pipes, diretivas e APIs no projeto biblioteca-web</p>
+  <p class="meta">Desenvolvimento Front-End [Angular] T1 | Módulo 2 | Semana 5 | Mapa visual da semana: como formulários, rotas, pipes, diretivas e APIs se conectam no projeto <b>biblioteca-web</b>. Use como cola durante os exercícios.</p>
+
+<div class="cabeca-secao">1. Visão geral: como a biblioteca-web funciona agora</div>
+<div class="linha"><div class="fluxo-caixa "><h4>Usuário</h4>digita, clica e navega</div><div class="seta">&rarr;</div><div class="fluxo-caixa verde"><h4>Router</h4><code>provideRouter</code>: URL → página (guards, lazy)</div><div class="seta">&rarr;</div><div class="fluxo-caixa azul"><h4>Páginas (componentes)</h4>Lista, Detalhe, Cadastro de livro, Cadastro de leitor, Endereço, Catálogo</div><div class="seta">&rarr;</div><div class="fluxo-caixa roxo"><h4>Services</h4><code>LivroService</code> (signals), <code>CepService</code>, <code>CatalogoService</code></div><div class="seta">&rarr;</div><div class="fluxo-caixa laranja"><h4>APIs externas</h4>viaCEP · Open Library · RapidAPI (modelo)</div></div>
+<p>Na tela: <b>pipes</b> formatam (<code>currency</code>, <code>date</code>, <code>tempoLeitura</code>) e <b>diretivas</b> reutilizam comportamento (<code>appDestaque</code>, <code>appSomenteNumeros</code>). Entre os services e as APIs passa o <b>interceptor</b> (log e cabeçalhos).</p>
+<div class="cabeca-secao">2. Formulários: duas abordagens para o mesmo problema</div>
+<div class="linha"><div class="fluxo-caixa verde"><h4>Template-Driven (leitor)</h4><code>FormsModule</code> · <code>[(ngModel)]</code> + <code>name</code> · validadores em <b>atributos</b> (<code>required</code>, <code>minlength</code>, <code>email</code>) · <code>#f="ngForm"</code> · <code>(ngSubmit)="salvar(f)"</code></div><div class="fluxo-caixa azul"><h4>Reactive Forms (livro)</h4><code>ReactiveFormsModule</code> · <code>NonNullableFormBuilder.group({...})</code> · <code>Validators</code> e <b>validador personalizado</b> · <code>[formGroup]</code> + <code>formControlName</code> · <code>(ngSubmit)="enviar()"</code></div></div>
+<div class="linha"><div class="fluxo-caixa "><h4>Estados do campo</h4><code>valid</code>/<code>invalid</code> · <code>touched</code>/<code>untouched</code> · <code>dirty</code>/<code>pristine</code> → classes <code>ng-*</code></div><div class="seta">&rarr;</div><div class="fluxo-caixa laranja"><h4>Mostrar o erro</h4><code>invalid</code> <b>e</b> <code>touched</code> (ou após o envio, com <code>markAllAsTouched()</code>)</div><div class="seta">&rarr;</div><div class="fluxo-caixa roxo"><h4>Enviar</h4>se válido: <code>LivroService.adicionar()</code> com <b>lista nova</b> (<code>update</code>) e <code>reset()</code></div></div>
+<div class="cabeca-secao">3. Rotas: da URL ao componente</div>
+<div class="linha"><div class="fluxo-caixa "><h4>URL</h4><code>/livros/3</code></div><div class="seta">&rarr;</div><div class="fluxo-caixa verde"><h4>Router</h4>procura a <b>primeira</b> rota que combina (<code>**</code> por último)</div><div class="seta">&rarr;</div><div class="fluxo-caixa laranja"><h4>Guard</h4><code>canDeactivate</code>: pode sair? (<code>form.dirty</code>)</div><div class="seta">&rarr;</div><div class="fluxo-caixa azul"><h4>Componente</h4><code>DetalheLivro</code> com <code>id = input.required&lt;string&gt;()</code></div><div class="seta">&rarr;</div><div class="fluxo-caixa "><h4>router-outlet</h4>mostra a página sem recarregar</div></div>
+<div class="linha"><div class="fluxo-caixa "><h4>routerLink</h4>o usuário <b>clica</b>: <code>[routerLink]="['/livros', id]"</code></div><div class="seta">&rarr;</div><div class="fluxo-caixa "><h4>router.navigate</h4>depois de uma <b>ação</b> no código: <code>navigate(['/livros', novo.id])</code></div><div class="seta">&rarr;</div><div class="fluxo-caixa verde"><h4>Lazy loading</h4><code>loadComponent: () =&gt; import(...)</code>: o código só baixa ao entrar</div></div>
+<div class="cabeca-secao">4. Pipes e diretivas: formatar e reutilizar</div>
+<div class="linha"><div class="fluxo-caixa verde"><h4>Pipe: só na tela</h4><code>{{ 59.9 | currency:'BRL' }}</code> → R$ 59,90 · <code>date</code>, <code>uppercase</code>, <code>percent</code>, <code>slice</code>, <code>json</code>, <code>async</code> · personalizado: <code>@Pipe</code> + <code>transform()</code> · idioma: <code>registerLocaleData</code> + <code>LOCALE_ID</code></div><div class="fluxo-caixa azul"><h4>Diretiva de atributo</h4><code>@Directive</code> + <code>host</code> (eventos) + <code>inject(ElementRef)</code> + <code>input()</code> com alias · <code>appDestaque</code>, <code>appSomenteNumeros</code></div><div class="fluxo-caixa roxo"><h4>Os 3 tipos de diretiva</h4><b>componentes</b> (com template) · <b>estruturais</b> (<code>@if</code>, <code>@for</code>) · <b>de atributo</b> (<code>ngClass</code>, as nossas)</div></div>
+<div class="cabeca-secao">5. APIs: do clique ao dado na tela</div>
+<div class="linha"><div class="fluxo-caixa "><h4>Componente</h4>chama o service e controla os <b>3 estados</b> com signals</div><div class="seta">&rarr;</div><div class="fluxo-caixa roxo"><h4>Service</h4><code>inject(HttpClient)</code> · <code>get&lt;T&gt;(url, { params })</code></div><div class="seta">&rarr;</div><div class="fluxo-caixa laranja"><h4>Interceptor</h4><code>withInterceptors([...])</code>: log, cabeçalhos (<code>req.clone()</code>)</div><div class="seta">&rarr;</div><div class="fluxo-caixa azul"><h4>Internet</h4>viaCEP / Open Library (<b>CORS</b> liberado pelo servidor)</div><div class="seta">&rarr;</div><div class="fluxo-caixa verde"><h4>Resposta</h4><code>map</code> para o nosso modelo → <code>subscribe</code> → signals</div></div>
+<div class="linha"><div class="fluxo-caixa "><h4>Carregando</h4><code>carregando.set(true)</code> antes da chamada</div><div class="seta">&rarr;</div><div class="fluxo-caixa verde"><h4>Sucesso</h4><code>next</code>: guarda o resultado / <code>patchValue</code></div><div class="seta">&rarr;</div><div class="fluxo-caixa laranja"><h4>Erro</h4><code>error</code>: mensagem útil (<code>status</code> 0, 404, 500)</div><div class="seta">&rarr;</div><div class="fluxo-caixa roxo"><h4>Sempre</h4><code>finalize</code>: <code>carregando.set(false)</code></div></div>
+<div class="linha"><div class="fluxo-caixa "><h4>CEP digitado</h4><code>appSomenteNumeros</code> + <code>maxlength="8"</code></div><div class="seta">&rarr;</div><div class="fluxo-caixa azul"><h4>valueChanges</h4><code>filter(length === 8)</code> + <code>takeUntilDestroyed()</code></div><div class="seta">&rarr;</div><div class="fluxo-caixa laranja"><h4>CepService.buscar</h4>viaCEP: <code>{ "erro": true }</code> = CEP inexistente (<b>200</b>!)</div><div class="seta">&rarr;</div><div class="fluxo-caixa verde"><h4>patchValue</h4>preenche rua, bairro, cidade e UF</div></div>
+<div class="cabeca-secao">6. Qual ferramenta usar? Guia de decisão</div>
+<table class="compacta"><tr><th>Pergunta</th><th>Use</th><th>Por quê</th></tr><tr><td>Formulário simples (3 a 5 campos)?</td><td><b>Template-Driven</b></td><td>Validação em atributos, pouco código</td></tr><tr><td>Formulário com muitos campos, regras entre campos ou dinâmico?</td><td><b>Reactive Forms</b></td><td>Lógica na classe: organizada e testável</td></tr><tr><td>Preciso de várias páginas com endereço próprio?</td><td><b>Router</b> (<code>routes</code>)</td><td>SPA sem recarregar, URL compartilhável</td></tr><tr><td>Quero impedir a saída de uma página com dados não salvos?</td><td><b>Guard</b> <code>canDeactivate</code></td><td>Função que libera ou bloqueia</td></tr><tr><td>Quero só mudar <b>como o valor aparece</b>?</td><td><b>Pipe</b></td><td>Não altera o dado original</td></tr><tr><td>Quero reaproveitar um <b>comportamento</b> em vários elementos?</td><td><b>Diretiva de atributo</b></td><td>Escuta eventos e muda o elemento</td></tr><tr><td>Preciso de dados de um servidor?</td><td><b><code>HttpClient</code> em um service</b></td><td>Observable + 3 estados com signals</td></tr><tr><td>Quero a mesma regra em <b>toda</b> requisição (log, token)?</td><td><b>Interceptor</b></td><td>Um ponto central</td></tr><tr><td>A API pede uma chave?</td><td><b>Back-end próprio</b> (produção)</td><td>No front a chave fica exposta no DevTools</td></tr></table>
+
+  <footer>
+    Desenvolvimento Front-End [Angular] T1 - SENAI/SC - Fluxograma, Semana 5<br>
+    Professor Lisandro Faria Pinheiro
+  </footer>
+
+</div>
+</body>
+</html>

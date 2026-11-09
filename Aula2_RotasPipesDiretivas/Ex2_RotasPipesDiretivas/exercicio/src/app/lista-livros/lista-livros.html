@@ -1,0 +1,7 @@
+<h2>Nosso acervo</h2>
+<p class="sub">{{ livros().length }} livros</p>
+<section class="grade">
+  @for (livro of livros(); track livro.id) {
+    <app-card-livro [livro]="livro" (emprestar)="emprestar($event)" (devolver)="devolver($event)" />
+  }
+</section>

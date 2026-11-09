@@ -1,0 +1,11 @@
+<article class="card" [class.indisponivel]="!livro().disponivel">
+  <img [src]="livro().imagem" [alt]="'Capa do livro ' + livro().titulo" />
+  <h3>{{ livro().titulo }}</h3>
+  <p>{{ livro().autor }} · {{ livro().categoria }}</p>
+  <span class="selo">{{ livro().disponivel ? 'Disponível' : 'Emprestado' }}</span>
+  @if (livro().disponivel) {
+    <button (click)="emprestar.emit(livro().id)">Emprestar</button>
+  } @else {
+    <button (click)="devolver.emit(livro().id)">Devolver</button>
+  }
+</article>

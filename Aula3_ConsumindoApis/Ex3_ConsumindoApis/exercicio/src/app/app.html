@@ -1,0 +1,15 @@
+<header class="topo">
+  <h1>{{ titulo }}</h1>
+  <nav>
+    <a routerLink="/livros" routerLinkActive="ativo">Livros</a>
+    <a routerLink="/cadastro" routerLinkActive="ativo">Cadastrar livro</a>
+    <a routerLink="/leitor" routerLinkActive="ativo">Cadastrar leitor</a>
+    <!-- TODO 3: Acrescente o link routerLink="/endereco" (texto "Endereço (CEP)") no menu. -->
+    <!-- TODO 5: Acrescente o link routerLink="/catalogo" (texto "Catálogo online") no menu. -->
+    <a routerLink="/sobre" routerLinkActive="ativo">Sobre</a>
+  </nav>
+</header>
+
+<main class="pagina">
+  <router-outlet />
+</main>

@@ -1,0 +1,14 @@
+<main class="pagina">
+  <h1>{{ titulo }}</h1>
+  <p class="sub">{{ livros().length }} livros no acervo</p>
+
+  <section class="grade">
+    @for (livro of livros(); track livro.id) {
+      <app-card-livro [livro]="livro" (emprestar)="emprestar($event)" (devolver)="devolver($event)" />
+    }
+  </section>
+
+  <section class="formularios">
+    <!-- TODO 3: Coloque as tags <app-cadastro-leitor /> e <app-cadastro-livro /> aqui dentro. -->
+  </section>
+</main>
