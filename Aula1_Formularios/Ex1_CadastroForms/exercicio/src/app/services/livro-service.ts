@@ -28,7 +28,18 @@ export class LivroService {
     this.alterarDisponibilidade(id, true);
   }
 
-  // TODO 4: No LivroService, crie o método adicionar(dados: NovoLivro): Livro. Ele gera o id (maior id + 1), marca disponivel = true, usa uma capa padrão se imagem vier vazia e cria uma lista NOVA com update.
+  adicionar(dados: NovoLivro): Livro {
+    const id = Math.max(0, ...this._livros().map((l) => l.id)) + 1;
+    const livro: Livro = {
+      ...dados,
+      id,
+      disponivel: true,
+      imagem: dados.imagem || `https://picsum.photos/seed/livro${id}/300/180`, 
+    };
+    this._livros.update((lista) => [...lista, livro]);
+    return livro;
+  }
+
 
   // Método auxiliar: troca só o campo "disponivel" do livro com o id informado.
   private alterarDisponibilidade(id: number, disponivel: boolean): void {

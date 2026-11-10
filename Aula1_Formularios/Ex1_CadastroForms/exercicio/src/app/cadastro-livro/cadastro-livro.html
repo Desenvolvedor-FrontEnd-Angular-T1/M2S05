@@ -1,5 +1,42 @@
 <section class="bloco-form">
   <h2>Cadastro de livro <small>Reactive Forms</small></h2>
 
-  <!-- TODO 6: Monte o <form [formGroup]="form" (ngSubmit)="enviar()" novalidate> com um campo para cada controle (formControlName), o <select> de categorias com @for, as mensagens de erro com erro('campo'), o status do form e a prévia {{ form.value | json }}. -->
+  <!-- [formGroup] liga ESTE form ao FormGroup da classe | formControlName liga cada campo a um FormControl -->
+  <form [formGroup]="form" (ngSubmit)="enviar()" novalidate>
+    <label for="titulo">Título</label>
+    <input id="titulo" formControlName="titulo" />
+    @if (erro('titulo')) { <small class="erro">{{ erro('titulo') }}</small> }
+
+    <label for="autor">Autor</label>
+    <input id="autor" formControlName="autor" />
+    @if (erro('autor')) { <small class="erro">{{ erro('autor') }}</small> }
+
+    <label for="categoria">Categoria</label>
+    <select id="categoria" formControlName="categoria">
+      @for (c of categorias; track c) {
+        <option [value]="c">{{ c }}</option>
+      }
+    </select>
+
+    <label for="paginas">Páginas</label>
+    <input id="paginas" type="number" formControlName="paginas" />
+    @if (erro('paginas')) { <small class="erro">{{ erro('paginas') }}</small> }
+
+    <label for="preco">Preço (R$)</label>
+    <input id="preco" type="number" step="0.01" formControlName="preco" />
+    @if (erro('preco')) { <small class="erro">{{ erro('preco') }}</small> }
+
+    <label for="imagem">URL da capa (opcional)</label>
+    <input id="imagem" formControlName="imagem" placeholder="https://..." />
+    @if (erro('imagem')) { <small class="erro">{{ erro('imagem') }}</small> }
+
+    <button type="submit">Cadastrar livro</button>
+  </form>
+
+  <p class="estado">Status: {{ form.status }} · alterado: {{ form.dirty }}</p>
+  <!-- json = pipe que mostra o valor atual do formulário (veremos pipes amanhã) -->
+  <pre class="previa">{{ form.value | json }}</pre>
+  @if (salvo()) {
+    <p class="ok">{{ salvo() }}</p>
+  }
 </section>
