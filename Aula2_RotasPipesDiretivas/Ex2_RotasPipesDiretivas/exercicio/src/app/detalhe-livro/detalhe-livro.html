@@ -1,6 +1,25 @@
-<!-- TODO 3: Monte a página: @if (livro(); as l) { link "Voltar" com routerLink="/livros", imagem, título, autor, categoria, páginas e disponibilidade } @else { mensagem "Livro não encontrado" }. -->
-<p>Detalhe em construção.</p>
+@if (livro(); as l) {
+  <a routerLink="/livros" class="voltar">← Voltar para a lista</a>
+  <article class="detalhe">
+    <img [src]="l.imagem" [alt]="'Capa de ' + l.titulo" />
+    <div>
+      <h2>{{ l.titulo }}</h2>
+      <p>{{ l.autor }} · {{ l.categoria }}</p>
+      <p>{{ l.paginas }} páginas · {{ l.disponivel ? 'Disponível' : 'Emprestado' }}</p>
+    </div>
+  </article>
+} @else {
+  <p>Livro não encontrado. <a routerLink="/livros">Voltar para a lista</a></p>
+}
 
-<!-- TODO 7: Mostre a "ficha" com pipes nativos: {{ l.titulo | uppercase }}, {{ l.preco | currency: 'BRL' }} e {{ hoje | date: 'fullDate' }}. -->
+@if (livro(); as l) {
+  <dl class="ficha">
+    <dt>Título (uppercase)</dt><dd>{{ l.titulo | uppercase }}</dd>
+    <dt>Preço (currency)</dt><dd>{{ l.preco | currency: 'BRL' }}</dd>
+    <dt>Consulta em (date)</dt><dd>{{ hoje | date: 'fullDate' }}</dd>
+  </dl>
+}
 
-<!-- TODO 8: Mostre o tempo de leitura com o seu pipe: {{ l.paginas | tempoLeitura }}. -->
+@if (livro(); as l) {
+  <p class="leitura">Tempo estimado de leitura: <strong>{{ l.paginas | tempoLeitura }}</strong></p>
+}

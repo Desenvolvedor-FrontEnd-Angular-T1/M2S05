@@ -1,11 +1,10 @@
 // app.ts - agora é só o "esqueleto" (shell) da aplicação: cabeçalho + menu + espaço onde as páginas aparecem.
 import { Component } from '@angular/core';
-// TODO 2: Importe RouterOutlet, RouterLink e RouterLinkActive de '@angular/router' e coloque-os no array imports.
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  // TODO 2: Preencha imports: [RouterOutlet, RouterLink, RouterLinkActive].
-  imports: [],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

@@ -1,8 +1,14 @@
 <header class="topo">
   <h1>{{ titulo }}</h1>
-  <!-- TODO 2: Crie o <nav> com links routerLink + routerLinkActive="ativo" para /livros, /cadastro, /leitor e /sobre. -->
+  <nav>
+    <!-- routerLink troca de página SEM recarregar | routerLinkActive põe a classe "ativo" no link da página atual -->
+    <a routerLink="/livros" routerLinkActive="ativo">Livros</a>
+    <a routerLink="/cadastro" routerLinkActive="ativo">Cadastrar livro</a>
+    <a routerLink="/leitor" routerLinkActive="ativo">Cadastrar leitor</a>
+    <a routerLink="/sobre" routerLinkActive="ativo">Sobre</a>
+  </nav>
 </header>
 
 <main class="pagina">
-  <!-- TODO 2: Adicione <router-outlet /> : é o "espaço" onde a página da rota atual aparece. -->
+  <router-outlet />
 </main>

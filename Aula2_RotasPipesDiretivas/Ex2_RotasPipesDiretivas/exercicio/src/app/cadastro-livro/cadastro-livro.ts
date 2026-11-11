@@ -2,7 +2,7 @@
 import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { AbstractControl, NonNullableFormBuilder, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-// TODO 4: Importe o Router de '@angular/router'.
+import { Router } from '@angular/router';
 import { LivroService } from '../services/livro-service';
 
 const semSoEspacos: ValidatorFn = (controle: AbstractControl): ValidationErrors | null => {
@@ -22,7 +22,7 @@ type Campo = 'titulo' | 'autor' | 'categoria' | 'paginas' | 'preco' | 'imagem';
 export class CadastroLivro {
   private fb = inject(NonNullableFormBuilder);
   private livroService = inject(LivroService);
-  // TODO 4: Injete o Router: private router = inject(Router).
+  private router = inject(Router);   // permite navegar por código
 
   protected readonly categorias = ['Programação', 'Design', 'Banco de Dados'];
   protected salvo = signal('');
@@ -36,7 +36,10 @@ export class CadastroLivro {
     imagem: ['', Validators.pattern(/^https?:\/\/\S+$/)],
   });
 
-  // TODO 5: Crie o método público temAlteracoes(): boolean que devolve this.form.dirty (o guard chama este método).
+  // Chamado pelo guard sairSemSalvarGuard: true = o usuário digitou algo e ainda não salvou.
+  temAlteracoes(): boolean {
+    return this.form.dirty;
+  }
 
   protected erro(campo: Campo): string {
     const c = this.form.controls[campo];
@@ -58,6 +61,6 @@ export class CadastroLivro {
     const novo = this.livroService.adicionar(this.form.getRawValue());
     this.salvo.set(`"${novo.titulo}" cadastrado! (id ${novo.id})`);
     this.form.reset();   // reset ANTES de navegar: o formulário deixa de estar "alterado" e o guard libera a saída
-    // TODO 4: Depois de salvar, vá para o detalhe do livro novo: this.router.navigate(['/livros', novo.id]).
+    this.router.navigate(['/livros', novo.id]);   // vai para o detalhe do livro recém-cadastrado
   }
 }

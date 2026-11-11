@@ -2,4 +2,8 @@
 import { CanDeactivateFn } from '@angular/router';
 import { CadastroLivro } from '../cadastro-livro/cadastro-livro';
 
-// TODO 5: Crie o guard: export const sairSemSalvarGuard: CanDeactivateFn<CadastroLivro> = (componente) => ... Se o formulário não foi alterado (componente.temAlteracoes() é false) libere; senão peça confirmação com confirm(...).
+export const sairSemSalvarGuard: CanDeactivateFn<CadastroLivro> = (componente) => {
+  // Sem alterações: libera. Com alterações: pergunta (true = sair, false = ficar).
+  if (!componente.temAlteracoes()) return true;
+  return confirm('Você tem dados não salvos. Deseja sair mesmo assim?');
+};
