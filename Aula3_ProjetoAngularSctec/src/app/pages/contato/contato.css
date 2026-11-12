@@ -1,0 +1,4 @@
+.card { max-width: 560px; margin-left: auto; margin-right: auto; }
+textarea { resize: vertical; }
+.estado { margin-top: 12px; font-size: 13px; color: var(--texto-suave); }
+.ok { margin-top: 16px; }

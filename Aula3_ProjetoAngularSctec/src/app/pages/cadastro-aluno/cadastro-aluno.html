@@ -1,0 +1,110 @@
+<!-- cadastro-aluno.html - JÁ ESTÁ PRONTO (exceto o TODO 4, lá embaixo, no "Resumo do cadastro"). -->
+<section class="card">
+  <div class="card-topo">
+    <h2>Cadastro de aluno</h2>
+    <span class="tag">Reactive Forms</span>
+  </div>
+  <p class="subtitulo">A estrutura do formulário vem do <code>fb.group</code> no .ts. O HTML só se conecta com <code>formControlName</code>.</p>
+
+  @if (!form.contains('nome')) {
+    <!-- Este aviso some sozinho quando o TODO 3 estiver feito -->
+    <div class="aviso">
+      O formulário ainda não foi montado. Faça o <strong>TODO 3</strong> em
+      <code>src/app/pages/cadastro-aluno/cadastro-aluno.ts</code>.
+    </div>
+  } @else {
+    <!-- [formGroup] liga este <form> ao "form" do .ts | (ngSubmit) chama enviar() -->
+    <form [formGroup]="form" (ngSubmit)="enviar()" novalidate>
+      <div class="grade">
+        <div class="campo">
+          <label for="nome">Nome completo</label>
+          <input id="nome" formControlName="nome" placeholder="Ex.: Ana Souza" />
+          @if (invalido('nome')) { <small class="erro">Informe o nome (mínimo 3 letras).</small> }
+        </div>
+
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" formControlName="email" placeholder="ana@email.com" />
+          @if (invalido('email')) { <small class="erro">Informe um e-mail válido.</small> }
+        </div>
+
+        <div class="campo">
+          <label for="telefone">Telefone (só números, com DDD)</label>
+          <input id="telefone" formControlName="telefone" inputmode="numeric" maxlength="11" placeholder="48999998888" />
+          @if (invalido('telefone')) { <small class="erro">Use 10 ou 11 números (DDD + telefone).</small> }
+        </div>
+
+        <div class="campo">
+          <label for="curso">Curso</label>
+          <select id="curso" formControlName="curso">
+            <option value="" disabled>Selecione...</option>
+            @for (curso of cursos; track curso) {
+              <option [value]="curso">{{ curso }}</option>
+            }
+          </select>
+          @if (invalido('curso')) { <small class="erro">Escolha um curso.</small> }
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="cep">CEP (só números)</label>
+        <div class="linha-cep">
+          <input id="cep" formControlName="cep" inputmode="numeric" maxlength="8" placeholder="88010000" />
+          <!-- type="button": este botão NÃO envia o form, só chama buscarCep() -->
+          <button type="button" class="btn btn-secundario" (click)="buscarCep()" [disabled]="carregando()">
+            {{ carregando() ? 'Buscando...' : 'Buscar CEP' }}
+          </button>
+        </div>
+        @if (invalido('cep')) { <small class="erro">O CEP precisa ter 8 números.</small> }
+        @if (erroCep()) { <small class="erro">{{ erroCep() }}</small> }
+      </div>
+
+      <!-- Endereço que veio da API viaCEP (aparece depois do TODO 5) -->
+      @if (endereco(); as e) {
+        <div class="endereco">
+          <strong>Endereço encontrado</strong>
+          <span>{{ e.logradouro || 'Logradouro não informado' }} - {{ e.bairro }}</span>
+          <span>{{ e.localidade }} / {{ e.uf }} · CEP {{ e.cep }}</span>
+        </div>
+      }
+
+      <div class="acoes">
+        <button type="submit" class="btn">Salvar cadastro</button>
+        <button type="button" class="btn btn-secundario" (click)="limpar()">Limpar</button>
+      </div>
+    </form>
+  }
+</section>
+
+@if (alunoSalvo(); as aluno) {
+  <section class="card resumo">
+    <div class="card-topo">
+      <h3>Resumo do cadastro</h3>
+      <span class="tag">Pipes</span>
+    </div>
+
+    <!--
+      TODO 4 (PIPES) - parte C: aplique os pipes nas 3 linhas marcadas abaixo:
+        Nome          ->  {{ aluno.nome | uppercase }}                       (pipe PADRÃO do Angular)
+        Cadastrado em ->  {{ aluno.cadastradoEm | date: 'dd/MM/yyyy HH:mm' }}  (pipe PADRÃO do Angular)
+        CEP           ->  {{ aluno.cep | cep }}                              (pipe PERSONALIZADO, criado no TODO 4 parte A)
+      Antes disso, faça a parte B (imports no cadastro-aluno.ts), senão o Angular não reconhece os pipes.
+    -->
+    <dl>
+      <dt>Nome</dt>
+      <dd>{{ aluno.nome }}</dd> <!-- TODO 4: uppercase -->
+
+      <dt>E-mail</dt>
+      <dd>{{ aluno.email }}</dd>
+
+      <dt>Curso</dt>
+      <dd>{{ aluno.curso }}</dd>
+
+      <dt>CEP</dt>
+      <dd>{{ aluno.cep }}</dd> <!-- TODO 4: cep (personalizado) -->
+
+      <dt>Cadastrado em</dt>
+      <dd>{{ aluno.cadastradoEm }}</dd> <!-- TODO 4: date -->
+    </dl>
+  </section>
+}

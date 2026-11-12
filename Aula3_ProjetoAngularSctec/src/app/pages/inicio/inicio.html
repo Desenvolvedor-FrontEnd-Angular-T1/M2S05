@@ -1,0 +1,32 @@
+<!-- inicio.html - JÁ ESTÁ PRONTO. -->
+<section class="card hero">
+  <span class="tag">projeto-angular-sctec</span>
+  <h1>Bem-vindo ao seu projeto Angular</h1>
+  <p class="subtitulo">
+    Este é o projeto que vai acompanhar o curso até o fim. Hoje você completa 5 TODOs.
+    Nas próximas semanas, os novos conteúdos entram aqui mesmo.
+  </p>
+  <p class="subtitulo">
+    Dica: no VS Code, use <code>Ctrl + Shift + F</code> e busque <code>TODO 1</code>, <code>TODO 2</code>... para achar cada ponto.
+  </p>
+  <div class="acoes">
+    <a class="btn" routerLink="/contato">Ir para Contato</a>
+    <a class="btn btn-secundario" routerLink="/cadastro">Ir para Cadastro</a>
+  </div>
+</section>
+
+<h2 class="secao">Roteiro da aula</h2>
+<div class="passos">
+  @for (passo of passos; track passo.todo) {
+    <article class="card passo">
+      <span class="numero">TODO {{ passo.todo }}</span>
+      <h3>{{ passo.titulo }}</h3>
+      <p>{{ passo.descricao }}</p>
+      <ul>
+        @for (arquivo of passo.arquivos; track arquivo) {
+          <li><code>src/app/{{ arquivo }}</code></li>
+        }
+      </ul>
+    </article>
+  }
+</div>

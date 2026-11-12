@@ -1,0 +1,27 @@
+<!-- app.html - layout fixo do site. JÁ ESTÁ PRONTO. -->
+<header class="topo">
+  <div class="marca">
+    <span class="logo" aria-hidden="true">&lt;/&gt;</span>
+    <div>
+      <strong>{{ titulo }}</strong>
+      <small>{{ curso }}</small>
+    </div>
+  </div>
+
+  <!-- routerLink: navega SEM recarregar a página | routerLinkActive: coloca a classe "ativo" no link da rota atual -->
+  <!-- Os links Contato e Cadastro só funcionam depois do TODO 1 (app.routes.ts). Antes disso, voltam para o Início. -->
+  <nav>
+    <a routerLink="/" routerLinkActive="ativo" [routerLinkActiveOptions]="{ exact: true }">Início</a>
+    <a routerLink="/contato" routerLinkActive="ativo">Contato</a>
+    <a routerLink="/cadastro" routerLinkActive="ativo">Cadastro de aluno</a>
+  </nav>
+</header>
+
+<main class="pagina">
+  <!-- Aqui o Router coloca o componente da rota atual -->
+  <router-outlet />
+</main>
+
+<footer class="rodape">
+  projeto-angular-sctec · {{ ano }} · feito com Angular
+</footer>

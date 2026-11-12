@@ -1,0 +1,39 @@
+<section class="card">
+  <div class="card-topo">
+    <h2>Fale com a coordenação</h2>
+    <span class="tag">Template-Driven</span>
+  </div>
+  <p class="subtitulo">Formulário simples, controlado pelo HTML com <code>ngModel</code>.</p>
+
+  <!--
+    TODO 2 (FORM TEMPLATE-DRIVEN): digite o formulário AQUI EMBAIXO deste comentário. O .ts e o CSS já estão prontos.
+
+    1) Abra o form:  <form #f="ngForm" (ngSubmit)="enviar(f)" novalidate>   ... e feche com </form> no final.
+
+    2) Campo NOME (modelo completo, copie a ideia para os outros):
+       <div class="campo">
+         <label for="nome">Nome</label>
+         <input id="nome" name="nome" [(ngModel)]="contato.nome" #nome="ngModel" required minlength="3" />
+         @if (nome.invalid && (nome.touched || f.submitted)) { <small class="erro">Informe seu nome (mínimo 3 letras).</small> }
+       </div>
+
+    3) Campo E-MAIL: igual ao nome, mas com  id/name "email", type="email", [(ngModel)]="contato.email", #email="ngModel", required email.
+       Erro: "Informe um e-mail válido."
+
+    4) Campo MENSAGEM: use <textarea id="mensagem" name="mensagem" rows="4" [(ngModel)]="contato.mensagem" #mensagem="ngModel" required></textarea>
+       Erro: "Escreva sua mensagem."
+
+    5) Botão:  <div class="acoes"><button type="submit" class="btn">Enviar mensagem</button></div>
+
+    6) (Opcional, logo depois do </form>) mostre o estado do form ao vivo:
+       <p class="estado">Formulário {{ f.valid ? 'válido' : 'inválido' }}</p>
+
+    Lembre: com ngModel, o atributo "name" é OBRIGATÓRIO.
+  -->
+
+
+  <!-- Aviso de sucesso: JÁ ESTÁ PRONTO (aparece depois do primeiro envio válido) -->
+  @if (enviada(); as msg) {
+    <p class="ok">Obrigado, {{ msg.nome }}! Sua mensagem foi registrada e a resposta irá para {{ msg.email }}.</p>
+  }
+</section>

@@ -1,0 +1,11 @@
+.hero h1 { font-size: 28px; margin-top: 10px; }
+.hero .acoes a { text-decoration: none; }
+.secao { margin: 8px 0 14px; }
+
+.passos { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.passo { margin: 0; border-top: 4px solid var(--laranja); }
+.passo h3 { margin-top: 6px; }
+.passo p { color: var(--texto-suave); font-size: 14px; }
+.passo ul { margin: 0; padding-left: 18px; font-size: 13px; }
+.passo code { word-break: break-all; }
+.numero { font-size: 12px; font-weight: 700; color: var(--laranja); letter-spacing: 0.5px; }

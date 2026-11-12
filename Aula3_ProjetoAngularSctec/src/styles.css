@@ -1,0 +1,100 @@
+/*
+  styles.css - estilos GLOBAIS (valem para a aplicação inteira).
+  O CSS de cada componente (ex.: contato.css) vale só para aquele componente.
+  Aqui ficam as cores do projeto e as classes reaproveitadas: .card, .campo, .btn, .erro, .ok, .aviso, .tag.
+*/
+:root {
+  --azul: #0b4f8a;
+  --azul-escuro: #083a66;
+  --azul-claro: #e6f0fa;
+  --laranja: #f08a24;
+  --texto: #1f2933;
+  --texto-suave: #52606d;
+  --borda: #d3dce6;
+  --fundo: #f4f7fb;
+  --branco: #ffffff;
+  --erro: #c62828;
+  --ok: #2e7d32;
+  --ok-fundo: #e8f5e9;
+  --raio: 12px;
+  --sombra: 0 2px 12px rgba(15, 40, 70, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+h1, h2, h3 { line-height: 1.2; margin: 0 0 8px; }
+p { margin: 0 0 12px; }
+code { background: var(--azul-claro); color: var(--azul-escuro); padding: 1px 6px; border-radius: 4px; font-size: 0.9em; }
+
+/* ---------- Cartão (bloco branco) ---------- */
+.card {
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.card-topo { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.subtitulo { color: var(--texto-suave); }
+
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--azul-claro);
+  color: var(--azul);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+/* ---------- Formulários ---------- */
+.campo { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; }
+.campo label { font-weight: 600; font-size: 14px; }
+
+input, select, textarea {
+  font: inherit;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background: var(--branco);
+  color: var(--texto);
+}
+input:focus, select:focus, textarea:focus { outline: 3px solid var(--azul-claro); border-color: var(--azul); }
+
+/* Classes que o PRÓPRIO Angular coloca nos campos: ng-invalid, ng-touched, ng-valid, ng-dirty... */
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched { border-color: var(--erro); }
+
+.erro { color: var(--erro); font-size: 13px; }
+
+/* ---------- Botões ---------- */
+.acoes { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.btn {
+  font: inherit;
+  font-weight: 600;
+  background: var(--azul);
+  color: var(--branco);
+  border: 1px solid var(--azul);
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn:hover { background: var(--azul-escuro); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-secundario { background: transparent; color: var(--azul); }
+.btn-secundario:hover { background: var(--azul-claro); }
+
+/* ---------- Mensagens ---------- */
+.ok { background: var(--ok-fundo); color: var(--ok); border-left: 4px solid var(--ok); padding: 12px 16px; border-radius: 8px; }
+.aviso { background: #fff6e6; border-left: 4px solid var(--laranja); padding: 12px 16px; border-radius: 8px; }

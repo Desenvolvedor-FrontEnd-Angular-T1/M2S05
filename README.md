@@ -11,6 +11,7 @@ Aulas: **09/11** (seg), **10/11** (ter) e **11/11** (qua) de 2026. Padrão **Ang
 | `Aula1_Formularios/Ex1_CadastroForms` | Exercício de segunda |
 | `Aula2_RotasPipesDiretivas/Ex2_RotasPipesDiretivas` | Exercício de terça |
 | `Aula3_ConsumindoApis/Ex3_ConsumindoApis` | Exercício de quarta |
+| `Aula3_ProjetoAngularSctec/src` | **Aula 3 ajustada (12/11):** `src` completo do **projeto-angular-sctec** (projeto base do restante do curso), com 5 TODOs: rotas, form Template-Driven, Reactive Forms, pipes e API viaCEP. Leia `src/README.md` e `src/README_COMANDOS.md` |
 | `Guia_Professor_M2S05` · `Plano_Aula_M2S05` · `Perguntas_Kahoot_M2S05` · `Ponte_S4_para_S5` · `Fluxograma_M2S05` · `Ferramentas_Apoio_M2S05` | Materiais de apoio (HTML + PDF; Kahoot também `.xlsx`; Fluxograma também `.png`) |
 
 Cada exercício tem:
